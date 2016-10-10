@@ -16,12 +16,12 @@ try:
 	with open(filePath, 'rb') as file:
 		if key and secret:
 			# with authentication
-			url = caddy.upload(url, file, key, secret)
+			link = caddy.upload(url, file, key, secret)
 		else:
 			# without authentication
-			url = caddy.upload(url, file)
+			link = caddy.upload(url, file)
 except Exception as e:
 	print(str(e))
 
-print('File uploaded at ' + url)
+print('File uploaded at ' + link)
 ```
