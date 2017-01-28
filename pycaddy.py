@@ -3,7 +3,7 @@ import time, calendar
 import hmac, hashlib, base64
 import string, random
 
-import requests
+from .requests import requests
 
 class SignatureAuth(requests.auth.AuthBase):
 	def __init__(self, key, secret):

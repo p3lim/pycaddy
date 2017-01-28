@@ -3,10 +3,6 @@
 A tiny Python module to manage uploading to [Caddy](https://caddyserver.com/) servers with the [upload extension](https://caddyserver.com/docs/upload).  
 HMAC-SHA256 is supported as well.
 
-### Dependencies
-
-- [Requests](http://python-requests.org/)
-
 ### Example
 
 ```python
