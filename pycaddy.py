@@ -45,6 +45,9 @@ def move(url, to, key=None, secret=None, signature=None):
 	res = requests.request('MOVE', url, headers=headers, auth=signature)
 	res.raise_for_status()
 
+def copy():
+	raise NotImplementedError
+
 def delete(url, key=None, secret=None, signature=None):
 	if not signature and (key and secret):
 		signature = SignatureAuth(key, secret)
