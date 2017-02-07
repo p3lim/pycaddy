@@ -34,4 +34,5 @@ def upload(url, file_path, key=None, secret=None, signature=None):
 
 	res.raise_for_status()
 
+	# TODO: https://github.com/wmark/caddy.upload/issues/18
 	return res.url + file_name
