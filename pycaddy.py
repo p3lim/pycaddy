@@ -23,16 +23,14 @@ class SignatureAuth(requests.auth.AuthBase):
 
 		return req
 
-def upload(url, file_path, key=None, secret=None):
-	file_name = ntpath.basename(file_path)
+def upload(url, file_path, key=None, secret=None, signature=None):
+	if not signature and (key and secret):
+		signature = SignatureAuth(key, secret)
 
+	file_name = ntpath.basename(file_path)
 	with open(file_path, 'rb') as file:
 		files = {str(file_name): file}
-
-		if key and secret:
-			res = requests.post(url, files=files, auth=SignatureAuth(key, secret))
-		else:
-			res = requests.post(url, files=files)
+		res = requests.post(url, files=files, auth=signature)
 
 	res.raise_for_status()
 
