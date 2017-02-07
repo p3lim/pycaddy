@@ -36,3 +36,18 @@ def upload(url, file_path, key=None, secret=None, signature=None):
 
 	# TODO: https://github.com/wmark/caddy.upload/issues/18
 	return res.url + file_name
+
+def move(url, to, key=None, secret=None, signature=None):
+	if not signature and (key and secret):
+		signature = SignatureAuth(key, secret)
+
+	headers = {'Destination': to}
+	res = requests.request('MOVE', url, headers=headers, auth=signature)
+	res.raise_for_status()
+
+def delete(url, key=None, secret=None, signature=None):
+	if not signature and (key and secret):
+		signature = SignatureAuth(key, secret)
+
+	res = requests.delete(url, auth=signature)
+	res.raise_for_status()

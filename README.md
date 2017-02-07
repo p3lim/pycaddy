@@ -8,15 +8,22 @@ HMAC-SHA256 is supported as well.
 ```python
 import pycaddy as caddy
 
-# upload without authentication
+# upload file without authentication
 link = caddy.upload(url, file_path)
 
-# upload with authentication
+# upload file with authentication
 link = caddy.upload(url, file_path, key, secret)
 
 # provide the authentication directly
 signature = caddy.SignatureAuth(key, secret)
 link = caddy.upload(url, file_path, signature=signature)
 
+# move file (new_path is relevant to the server)
+caddy.move(url, new_path, signature=signature)
+
+# delete file
+caddy.delete(url, signature=signature)
+
+# all of the methods only raise when there are errors
 print('File uploaded at ' + link)
 ```
